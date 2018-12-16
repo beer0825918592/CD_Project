@@ -1,23 +1,16 @@
-package com.example.admin.rentbookstore;
+package com.example.admin.CD_Project;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.admin.rentbookstore.db.DatabaseHelper;
-import com.example.admin.rentbookstore.model.BookItem;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class SearchBook extends AppCompatActivity {
 
@@ -59,34 +52,35 @@ public class SearchBook extends AppCompatActivity {
         });
 
         Button searchButton = findViewById(R.id.SearchButton_Search);
+        Button back = findViewById(R.id.back_to_home);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                EditText  bookEditText = findViewById(R.id.editText_BookName);
-                EditText authorEditText = findViewById(R.id.editText_AuthorName);
-                bookName = bookEditText.getText().toString();
-                authorName = authorEditText.getText().toString();
-
 
 
                 //String bookAndAuthor = bookName+","+authorName;
                 /*Toast t1 = Toast.makeText(SearchBook.this, typeName, Toast.LENGTH_SHORT);
                 t1.show();*/
-                if(bookName.length() == 0 && authorName.length() == 0 && typeName.equals("เลือกประเภทของหนังสือ")){
-                    Toast t = Toast.makeText(SearchBook.this, "กรุณาใส่ชื่อหนังสือ, ชื่อผู้แต่ง หรือประเภทหนังสือก่อนค่ะ", Toast.LENGTH_SHORT);
-                    t.show();
 
-                }
-                else if (bookName.length() != 0 || authorName.length() != 0 || (typeName.length() != 0 && !typeName.equals("เลือกประเภทของหนังสือ"))){
+
+                if (typeName.equals("Action")||typeName.equals("Comedy")
+                        ||typeName.equals("Romance")||typeName.equals("Adventure")
+                        ||typeName.equals("Drama")||typeName.equals("Crime")
+                        ||typeName.equals("Fantasy")||typeName.equals("Sci-Fi")
+                        ||typeName.equals("Biography")||typeName.equals("Thriller")
+                        ||typeName.equals("Animation")||typeName.equals("History")
+                        ||typeName.equals("Family")){
                     Intent intent = new Intent(SearchBook.this, ResultBook.class);
-                    Toast t = Toast.makeText(SearchBook.this, typeName, Toast.LENGTH_SHORT);
-                    t.show();
+                   
                     intent.putExtra("book", bookName);
                     intent.putExtra("author", authorName);
                     intent.putExtra("type", typeName);
                     startActivity(intent);
+                }else{
+                    Toast t = Toast.makeText(SearchBook.this, "กรุณาเลือกประเภทหนัง", Toast.LENGTH_SHORT);
+                    t.show();
                 }
+
 
                 /*
                 Intent intent = new Intent(SearchBook.this, SearchBook.class);
@@ -94,17 +88,31 @@ public class SearchBook extends AppCompatActivity {
                 startActivity(intent);*/
             }
         });
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void createThaiClubData() {
-        bookType.add("เลือกประเภทของหนังสือ");
-        bookType.add("บันเทิงคดี");
-        bookType.add("สารคดี");
-        bookType.add("ตำรา");
-        bookType.add("วารสาร");
-
-
-
-    }
+        bookType.add("เลือกประเภทของหนัง");
+        bookType.add("Action");
+        bookType.add("Comedy");
+        bookType.add("Romance");
+        bookType.add("Adventure");
+        bookType.add("Drama");
+        bookType.add("Crime");
+        bookType.add("Fantasy");
+        bookType.add("Sci-Fi");
+        bookType.add("Biography");
+        bookType.add("Thriller");
+        bookType.add("Animation");
+        bookType.add("History");
+        bookType.add("Family");
+ }
 
 }

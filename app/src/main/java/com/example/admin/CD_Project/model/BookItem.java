@@ -1,9 +1,9 @@
-package com.example.admin.rentbookstore.model;
+package com.example.admin.CD_Project.model;
 
 import java.util.Locale;
 
 public class BookItem {
-
+    public final long _id;
     public final String namebook;
     public final String nameauthor;
     public final String numpage;
@@ -14,7 +14,8 @@ public class BookItem {
     public final String status;
 
 
-    public BookItem(String namebook, String nameauthor, String numpage, String pricebook, String pricerent, String typebook, String image , String status) {
+    public BookItem(long id,String namebook, String nameauthor, String numpage, String pricebook, String pricerent, String typebook, String image , String status) {
+        _id = id;
         this.namebook = namebook;
         this.nameauthor = nameauthor;
         this.numpage = numpage;
@@ -28,7 +29,7 @@ public class BookItem {
     public String toString() {
         String msg = String.format(
                 Locale.getDefault(),
-                "ชื่อหนังสือ : %s\n" +
+                "ชื่อหนัง: %s\n" +
                         "ชื่อผู้แต่ง : %s\n" +
                         "จำนวนหน้า : %s\n"+
                         "ราคาปก : %s\n" +

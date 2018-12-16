@@ -1,4 +1,4 @@
-package com.example.admin.rentbookstore.adapter;
+package com.example.admin.CD_Project.adapter;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -14,8 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.admin.rentbookstore.R;
-import com.example.admin.rentbookstore.model.BookItem;
+import com.example.admin.CD_Project.R;
+import com.example.admin.CD_Project.model.BookItem;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,22 +54,25 @@ public class BookListAdapter  extends ArrayAdapter<BookItem> {
 
         BookItem phoneItem = mBookItemList.get(position);
         String nameBook = phoneItem.namebook;
-        String nameAuthor = phoneItem.nameauthor;
+
         String numPage = phoneItem.numpage;
+        String nameAuthor = phoneItem.nameauthor;
         String priceBook = phoneItem.pricebook;
         String priceRent = phoneItem.pricerent;
         String typeBook = phoneItem.typebook;
         String status = phoneItem.status;
+
         String filename = phoneItem.image;
 
 
 
-        nameBookTextView.setText("ชื่อหนังสือ : "+nameBook);
-        nameAuthorTextView.setText("ชื่อผู้แต่ง : "+nameAuthor);
-        numPageTextView.setText("จำนวนหน้า : "+numPage);
-        priceBookTextView.setText("ราคาปก : "+priceBook);
-        priceRentTextView.setText("ราคาค่าเช่า : "+priceRent);
-        typeBookTextView.setText("ประเภทหนังสือ : "+typeBook);
+
+        nameBookTextView.setText("ชื่อหนัง : "+nameBook);
+        nameAuthorTextView.setText("ชื่อผู้กำกับ : "+nameAuthor);
+        numPageTextView.setText("ความยาว : "+numPage+" นาที ");
+        typeBookTextView.setText("ประเภทหนัง : "+typeBook);
+        priceRentTextView.setText("imdb : "+priceRent);
+        priceBookTextView.setText("ราคาเช่า : "+priceBook);
         statusTextView.setText("สถานะ : "+status);
 
         AssetManager am = mContext.getAssets();

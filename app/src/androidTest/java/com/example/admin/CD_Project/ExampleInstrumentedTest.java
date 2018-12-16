@@ -1,4 +1,4 @@
-package com.example.admin.rentbookstore;
+package com.example.admin.CD_Project;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

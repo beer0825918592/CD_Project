@@ -1,28 +1,29 @@
-package com.example.admin.rentbookstore;
+package com.example.admin.CD_Project;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.admin.rentbookstore.adapter.BookListAdapter;
-import com.example.admin.rentbookstore.db.DatabaseHelper;
-import com.example.admin.rentbookstore.model.BookItem;
+import com.example.admin.CD_Project.adapter.BookListAdapter;
+import com.example.admin.CD_Project.db.DatabaseHelper;
+import com.example.admin.CD_Project.model.BookItem;
 
-import static com.example.admin.rentbookstore.db.DatabaseHelper.TABLE_NAME;
-import static com.example.admin.rentbookstore.db.DatabaseHelper.COL_NAMEBOOK;
-import static com.example.admin.rentbookstore.db.DatabaseHelper.COL_NAMEAUTHOR;
-import static com.example.admin.rentbookstore.db.DatabaseHelper.COL_NUMPAGE;
-import static com.example.admin.rentbookstore.db.DatabaseHelper.COL_PRICEBOOK;
-import static com.example.admin.rentbookstore.db.DatabaseHelper.COL_PRICERENT;
-import static com.example.admin.rentbookstore.db.DatabaseHelper.COL_TYPEBOOK;
-import static com.example.admin.rentbookstore.db.DatabaseHelper.COL_IMAGE;
-import static com.example.admin.rentbookstore.db.DatabaseHelper.COL_STATUS;
+import static com.example.admin.CD_Project.db.DatabaseHelper.COL_ID;
+import static com.example.admin.CD_Project.db.DatabaseHelper.TABLE_NAME;
+import static com.example.admin.CD_Project.db.DatabaseHelper.COL_NAMEBOOK;
+import static com.example.admin.CD_Project.db.DatabaseHelper.COL_NAMEAUTHOR;
+import static com.example.admin.CD_Project.db.DatabaseHelper.COL_NUMPAGE;
+import static com.example.admin.CD_Project.db.DatabaseHelper.COL_PRICEBOOK;
+import static com.example.admin.CD_Project.db.DatabaseHelper.COL_PRICERENT;
+import static com.example.admin.CD_Project.db.DatabaseHelper.COL_TYPEBOOK;
+import static com.example.admin.CD_Project.db.DatabaseHelper.COL_IMAGE;
+import static com.example.admin.CD_Project.db.DatabaseHelper.COL_STATUS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,15 @@ public class ResultBook extends AppCompatActivity {
         book = getIntent().getStringExtra("book");
         author = getIntent().getStringExtra("author");
         type= getIntent().getStringExtra("type");
+
+        Button back_home=findViewById(R.id.button2);
+        back_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ResultBook.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
        // int len = author.length();
@@ -106,9 +116,9 @@ public class ResultBook extends AppCompatActivity {
 
                     String image = c.getString(c.getColumnIndex(COL_IMAGE));
                     String status = c.getString(c.getColumnIndex(COL_STATUS));
+                    long id=c.getLong(c.getColumnIndex(COL_ID));
 
-
-                    BookItem item = new BookItem(namebook, nameauthor, numpage, pricebook, pricerent, typebook, image, status);
+                    BookItem item = new BookItem(id,namebook, nameauthor, numpage, pricebook, pricerent, typebook, image, status);
                     mBookItemList.add(item);
 
 
@@ -121,6 +131,7 @@ public class ResultBook extends AppCompatActivity {
 
         TextView resultShow = findViewById(R.id.textView2);
         resultShow.setText("ผลการค้นหา "+result+" เรื่อง");
+
     }
 
     private void setupListView() {

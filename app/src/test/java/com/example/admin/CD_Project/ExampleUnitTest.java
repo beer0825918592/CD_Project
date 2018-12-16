@@ -1,4 +1,4 @@
-package com.example.admin.rentbookstore;
+package com.example.admin.CD_Project;
 
 import org.junit.Test;
 
